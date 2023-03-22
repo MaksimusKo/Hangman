@@ -67,7 +67,7 @@ Hangman6= (    """
     ----------
     """)
 def play():
-    guessed = ['']
+    guessed = []
     wrong = []
     count = 1
     while count <= 6:
@@ -78,12 +78,12 @@ def play():
             exit()
         if guess in wrong or guess in guessed:
             print('Вы уже вводили эту букву')
-        if len(guess) > 1:
+        if len(guess) > 1 and guess != ranwords:
             print('введите одну букву')
         elif guess in ranwords:
             if len(guess) == 1:
                 print('буква', guess, 'есть в слове')
-                guessed[0] = guessed[0]+guess
+                guessed.append(guess)
                 print('ваши угаданные буквы', guessed, )
         if guess == ranwords:
             print('Вы победили')
