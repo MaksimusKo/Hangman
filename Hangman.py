@@ -3,6 +3,7 @@ print('Это словесная угадайка, у вас есть 6 попы
 
 #words = ['WHAT','секретарь','знакомый','войско','звезда','двор','бутылка','чувство','этап','сердце','честь']
 words = ['OBNOXIOUS','DEATH','HERO','TWENTY','THIRTY','FORTY','SIXTY']
+# words = ['wtf']
 ranwords = random.choice(words).lower()
 Hangman1 = (
     """
@@ -69,6 +70,8 @@ Hangman6= (    """
 def play():
     guessed = []
     wrong = []
+    word = '_'*len(ranwords)
+    wordds = list(word)
     count = 1
     hintcount = 0
     print('Подсказка, в слове', len(ranwords), 'буквы')
@@ -89,14 +92,14 @@ def play():
             if len(guess) == 1:
                 print('буква', guess, 'есть в слове')
                 guessed.append(guess)
-                print('ваши угаданные буквы', guessed, )
-                print('буква',guess,ranwords.index(guess)+1,'буква в слове')
+                wordds[ranwords.index(guess)] = guess
+                print('ваше слово',''.join(wordds))
         if guess == ranwords:
             print('Вы победили')
             exit()
         if guess != ranwords and guess not in ranwords and guess not in wrong and len(guess) == 1 and not guess in '1234567890':
             print('Неправильный ввод')
-            print('ваши угаданные буквы', guessed, )
+            print('ваше слово', ''.join(wordds))
             count += 1
             wrong.append(guess)
             if count == 1:
